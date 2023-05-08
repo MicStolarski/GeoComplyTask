@@ -40,5 +40,15 @@ public class CreateMailScreen {
         } catch (NoSuchElementException | StaleElementReferenceException e) {
             System.out.println("Problem with SEND button");
         }
+        waitForMailToBeSend();
+    }
+
+    public void waitForMailToBeSend() {
+        try {
+            new WebDriverWait(driver, 10).until(ExpectedConditions.textToBePresentInElementLocated(new By.ByCssSelector(".vh .aT .bAq"), "Message sent"));
+
+        } catch (TimeoutException e) {
+            System.out.println("Website have a problem to load menu to create new mail, user can have a bad connection");
+        }
     }
 }
